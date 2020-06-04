@@ -7,12 +7,15 @@ After reading the material, you will have a big picture of the key elements of P
 Then by following the learning approach, you will remember the key elements hopefully in 3 days and start to use Pandas with ease.
 
 
-The approach:
+% The approach:
 In order to learn Pandas quickly, please repeat those key elements by coding or writing on a paper every day for three days or more.
 
-About Pandas:
+% Features:
+The structure of the contents allows you to systematically understand the various key operations of Pandas that include: select, change, add, delete, merge, aggregate. Make sure you know how to do each of them. If you are familiar with SQL, the operations are similar.
+
+% About Pandas:
 Pandas is built on the package numpy and allows fast calculations for matrix-like data.
 
  
-Reference:
+% Reference:
 Watching video might make you learn Pandas even faster. You can audit this IBM class for free: https://www.coursera.org/learn/data-analysis-with-python/
