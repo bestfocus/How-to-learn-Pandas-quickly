@@ -8,7 +8,7 @@
 
 import pandas as pd
 
-# import data
+# import data and generate DataFrame a and c
 filepath = "C:\\User_name\\Kaggle\\"
 a=pd.read_csv(filepath  + "sales_train_validation.csv")
 c=pd.read_csv(filepath + "calendar.csv")
@@ -17,10 +17,12 @@ c=pd.read_csv(filepath + "calendar.csv")
 onecol = pd.Series([1,2,3])
 twocols = pd.DataFrame([1,2,3], [6,7,8])
 
-# dataframe structure elements: index for rows, columns are just columns
+# dataframe structure elements: 1. index for rows, 2. columns are just columns
 a.describe() #for numerical variables, shows quantiles
+a.head() # show top 10 rows of the data
 c.columns
 c.index
+c.dtype
 
 # the index is a special feature of pandas
 test = a.copy() # make a copy of a, such that when you change test, a won't be changed
@@ -29,3 +31,22 @@ test['index'] = test.index # col index will be added after the last column
 
 # show values in the data
 a.iloc[1,2]
+# find items by using condition
+a[a['item_id']=='HOBBIES_1_001']
+test.where(test['cat_id']=='FOODS') #show False results as NaN too
+a[a['cat_id'].isin(['HOBBIES', 'FOODS'])] # isin select the items containing cat_id in the list
+
+# Change the data
+# add new columns
+test['type']=test['id'].apply(lambda x: x[-10:])
+test[test['type']=='validation']
+# use sort_values to order the data by a column name
+test.sort_values('id')
+#rearrange the order of the columns
+cols = test.columns.tolist()
+test = test[[cols[-1]] + cols[:-1]]
+
+# select top 10 smallest
+dailymean=a[6:].mean()
+c[c['d'].isin(dailymean.sort_values()[:10].index)]
+
