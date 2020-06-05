@@ -11,8 +11,9 @@ In order to learn Pandas quickly, please repeat those key elements by coding or 
 When you just start to get familiar with Pandas, it might be more effective if you make this the first thing to do in the morning and try to spend 20 or 30 minutes. After several days, probably you will start to enjoy using Pandas.
 
 # Pandas Features:
-Pandas is derived from panel data. Pandas is built on the package numpy and allows fast calculations for matrix-like data.
-The structure of the contents allows you to systematically understand the various key operations of Pandas that include: select, change, add, delete, merge, aggregate. Make sure you know how to do each of them. If you are familiar with SQL, the operations are similar.
+Pandas is derived from the term: panel data. Pandas is built on the package numpy and allows fast calculations for matrix-like data.
+
+The structure of the contents here allows you to systematically understand the various key operations of Pandas that include: select, change, add, delete, merge, aggregate. Make sure you know how to do each of them. If you are familiar with SQL, the operations are similar.
 
  
 # Reference:
