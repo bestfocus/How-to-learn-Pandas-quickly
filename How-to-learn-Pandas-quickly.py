@@ -50,3 +50,18 @@ test = test[[cols[-1]] + cols[:-1]]
 dailymean=a[6:].mean()
 c[c['d'].isin(dailymean.sort_values()[:10].index)]
 
+# join
+pd.merge(a, test[test['type']=='validation']) # merge by id, keep the same index
+b.iloc[:30490, :1].join(a.iloc[:,1:]) # index are the same, there are no overlap columns
+b.iloc[:30490, :1].merge(a, how='inner', left_on='id', right_on='id') # if orders of id are different in b and a, merge and use b's order
+
+# find the intersection of two results
+set(c['event_name_1'].unique()).intersection(c['event_name_2'].unique())
+
+# delete
+index1 = test[test['item_id']=='HOBBIES_1_001'].index
+test.drop(index1, inplace=True) # delete rows
+del test['type'] # delete a column
+
+# TO BE CONTINUED ...
+
