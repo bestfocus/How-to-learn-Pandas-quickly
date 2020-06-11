@@ -22,7 +22,7 @@ a.describe() #for numerical variables, shows quantiles
 a.head() # show top 10 rows of the data
 c.columns
 c.index
-c.dtype
+c.dtypes
 
 # the index is a special feature of pandas
 test = a.copy() # make a copy of a, such that when you change test, a won't be changed
@@ -62,6 +62,15 @@ set(c['event_name_1'].unique()).intersection(c['event_name_2'].unique())
 index1 = test[test['item_id']=='HOBBIES_1_001'].index
 test.drop(index1, inplace=True) # delete rows
 del test['type'] # delete a column
+
+# group
+a.iloc[:, 6:].mean(axis=1) # mean for each row
+a.groupby('cat_id').sum()
+# these are the same
+a.groupby('cat_id').size()
+a['cat_id'].value_counts()
+a.groupby('state_id').mean().mean(axis=1)
+test[12:20].sum(axis=0)
 
 # TO BE CONTINUED ...
 
