@@ -30,7 +30,8 @@ test.set_index('id') # column id becomes index, there is no id col afterwards
 test['index'] = test.index # col index will be added after the last column
 
 # show values in the data
-a.iloc[1,2]
+a.iloc[1,2] # this uses the matrix positions of the elements, first is row position, second is column position, index starts from 0
+a.loc[:, 'id'] # ':' means including all
 # find items by using condition
 a[a['item_id']=='HOBBIES_1_001']
 test.where(test['cat_id']=='FOODS') #show False results as NaN too
@@ -41,7 +42,7 @@ a[a['cat_id'].isin(['HOBBIES', 'FOODS'])] # isin select the items containing cat
 test['type']=test['id'].apply(lambda x: x[-10:])
 test[test['type']=='validation']
 # use sort_values to order the data by a column name
-test.sort_values('id')
+test = test.sort_values('id')
 #rearrange the order of the columns
 cols = test.columns.tolist()
 test = test[[cols[-1]] + cols[:-1]]
@@ -63,7 +64,7 @@ index1 = test[test['item_id']=='HOBBIES_1_001'].index
 test.drop(index1, inplace=True) # delete rows
 del test['type'] # delete a column
 
-# group
+# aggregate by a group
 a.iloc[:, 6:].mean(axis=1) # mean for each row
 a.groupby('cat_id').sum()
 # these are the same
