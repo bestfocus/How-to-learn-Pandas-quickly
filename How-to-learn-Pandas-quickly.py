@@ -16,6 +16,8 @@ c=pd.read_csv(filepath + "calendar.csv")
 # the basic data structures are Series and DataFrame, you can create by yourself
 onecol = pd.Series([1,2,3])
 twocols = pd.DataFrame([1,2,3], [6,7,8])
+twocolsFromDict = pd.DataFrame({'First':[1,2,3], 'Second':[6,7,8]})
+onecoldf =  onecol.to_frame()
 
 # dataframe structure elements: 1. index for rows, 2. columns are just columns
 a.describe() #for numerical variables, shows quantiles
@@ -23,6 +25,7 @@ a.head() # show top 10 rows of the data
 c.columns
 c.index
 c.dtypes
+c.values
 
 # the index is a special feature of pandas
 test = a.copy() # make a copy of a, such that when you change test, a won't be changed
@@ -36,6 +39,8 @@ a.loc[:, 'id'] # ':' means including all
 a[a['item_id']=='HOBBIES_1_001']
 test.where(test['cat_id']=='FOODS') #show False results as NaN too
 a[a['cat_id'].isin(['HOBBIES', 'FOODS'])] # isin select the items containing cat_id in the list
+c.loc[:,'event_name_1'][~c.loc[:,'event_name_1'].isin(c.loc[:,'event_name_2'])].unique() # select event_name_1 not in event_name_2 
+c.loc[~c.loc[:,'event_name_2'].isna(),['event_name_1','event_name_2']] # select both events are not null
 
 # Change the data
 # add new columns
