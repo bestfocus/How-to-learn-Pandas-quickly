@@ -7,6 +7,8 @@
 # You can download the 4 files from the website if you like. Two files have more than 100GB.
 
 import pandas as pd
+import numpy as np
+import scipy
 
 # import data and generate DataFrame a and c
 filepath = "C:\\User_name\\Kaggle\\"
