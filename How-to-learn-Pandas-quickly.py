@@ -52,6 +52,11 @@ test = test.sort_values('id')
 cols = test.columns.tolist()
 test = test[[cols[-1]] + cols[:-1]]
 
+# rename columns
+test1 = c.copy()
+test1.columns=b.columns[:len(test1.columns)]
+test.rename(columns={'F2':'test2'}, inplace=True)
+
 # select top 10 smallest
 dailymean=a[6:].mean()
 c[c['d'].isin(dailymean.sort_values()[:10].index)]
@@ -78,5 +83,32 @@ a['cat_id'].value_counts()
 a.groupby('state_id').mean().mean(axis=1)
 test[12:20].sum(axis=0)
 
-# TO BE CONTINUED ...
+# --- other types of summarization or transformation --- #
+#select unique
+a['state_id'].unique()
+np.sort(list(c['event_name_1'].unique())) # sort unique numpy array
 
+# get col type
+a['id'].dtype
+test['d_1'].value_counts()
+# find whether a column all has the same value 0
+(test['d_1']==0).all()
+# find whether a column include the value 0
+(test['d_1']==0).any()
+
+# transform to pivot table
+a.iloc[:,5:8].melt(id_vars=['state_id'], value_vars=['d_1']) 
+pd.pivot_table(c[['weekday','event_name_1']], index=['event_name_1'],columns=['weekday'],aggfunc=np.size)
+
+# one hot transformation
+a['state_id']=pd.Categorical(a['state_id'])
+states = pd.get_dummies(a['state_id'])
+pd.DataFrame(test1).transpose().melt(id_vars=['item_id','store_id'])
+
+# calculations
+d.iloc[:, -1].diff() # diff from previous row
+d.iloc[:, 0].shift() # get the value from previous row
+a.groupby('cat_id').sum().transpose().corr() # pearson corr of 3 categories
+scipy.stats.stats.spearmanr(a.groupby('cat_id').sum().transpose()) # rank correlation
+scipy.stats.stats.pearsonr(a.groupby('cat_id').sum().to_numpy()[0], a.groupby('cat_id').sum().to_numpy()[1]) # pearson correlation between two arrays
+#output
