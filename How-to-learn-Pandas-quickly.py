@@ -12,8 +12,8 @@ import scipy
 
 # import data and generate DataFrame a and c
 filepath = "C:\\User_name\\Kaggle\\"
-a=pd.read_csv(filepath  + "sales_train_validation.csv")
-c=pd.read_csv(filepath + "calendar.csv")
+a = pd.read_csv(filepath  + "sales_train_validation.csv")
+c = pd.read_csv(filepath + "calendar.csv")
 
 # the basic data structures are Series and DataFrame, you can create by yourself
 onecol = pd.Series([1,2,3])
@@ -38,33 +38,33 @@ test['index'] = test.index # col index will be added after the last column
 a.iloc[1,2] # this uses the matrix positions of the elements, first is row position, second is column position, index starts from 0
 a.loc[:, 'id'] # ':' means including all
 # find items by using condition
-a[a['item_id']=='HOBBIES_1_001']
-test.where(test['cat_id']=='FOODS') #show False results as NaN too
+a[a['item_id'] == 'HOBBIES_1_001']
+test.where(test['cat_id'] == 'FOODS') #show False results as NaN too
 a[a['cat_id'].isin(['HOBBIES', 'FOODS'])] # isin select the items containing cat_id in the list
-c.loc[:,'event_name_1'][~c.loc[:,'event_name_1'].isin(c.loc[:,'event_name_2'])].unique() # select event_name_1 not in event_name_2 
-c.loc[~c.loc[:,'event_name_2'].isna(),['event_name_1','event_name_2']] # select both events are not null
+c.loc[:, 'event_name_1'][~c.loc[:,'event_name_1'].isin(c.loc[:,'event_name_2'])].unique() # select event_name_1 not in event_name_2 
+c.loc[~c.loc[:,'event_name_2'].isna(), ['event_name_1','event_name_2']] # select both events are not null
 
 # Change the data
 # add new columns
-test['type']=test['id'].apply(lambda x: x[-10:])
-test[test['type']=='validation']
+test['type'] = test['id'].apply(lambda x: x[-10:])
+test[test['type'] == 'validation']
 # use sort_values to order the data by a column name
 test = test.sort_values('id')
-#rearrange the order of the columns
+#rearrange the order of the columns by using a list of selected column names in new order
 cols = test.columns.tolist()
 test = test[[cols[-1]] + cols[:-1]]
 
 # rename columns
 test1 = c.copy()
-test1.columns=b.columns[:len(test1.columns)]
+test1.columns = b.columns[:len(test1.columns)]
 test.rename(columns={'F2':'test2'}, inplace=True)
 
 # select top 10 smallest
-dailymean=a[6:].mean()
+dailymean = a[6:].mean()
 c[c['d'].isin(dailymean.sort_values()[:10].index)]
 
 # join
-pd.merge(a, test[test['type']=='validation']) # merge by id, keep the same index
+pd.merge(a, test[test['type'] == 'validation']) # merge by id, keep the same index
 b.iloc[:30490, :1].join(a.iloc[:,1:]) # index are the same, there are no overlap columns
 b.iloc[:30490, :1].merge(a, how='inner', left_on='id', right_on='id') # if orders of id are different in b and a, merge and use b's order
 
@@ -72,7 +72,7 @@ b.iloc[:30490, :1].merge(a, how='inner', left_on='id', right_on='id') # if order
 set(c['event_name_1'].unique()).intersection(c['event_name_2'].unique())
 
 # delete
-index1 = test[test['item_id']=='HOBBIES_1_001'].index
+index1 = test[test['item_id'] == 'HOBBIES_1_001'].index
 test.drop(index1, inplace=True) # delete rows
 del test['type'] # delete a column
 
@@ -94,16 +94,16 @@ np.sort(list(c['event_name_1'].unique())) # sort unique numpy array
 a['id'].dtype
 test['d_1'].value_counts()
 # find whether a column all has the same value 0
-(test['d_1']==0).all()
+(test['d_1'] == 0).all()
 # find whether a column include the value 0
-(test['d_1']==0).any()
+(test['d_1'] == 0).any()
 
 # transform to pivot table
 a.iloc[:,5:8].melt(id_vars=['state_id'], value_vars=['d_1']) 
-pd.pivot_table(c[['weekday','event_name_1']], index=['event_name_1'],columns=['weekday'],aggfunc=np.size)
+pd.pivot_table(c[['weekday','event_name_1']], index=['event_name_1'], columns=['weekday'], aggfunc=np.size)
 
 # one hot transformation
-a['state_id']=pd.Categorical(a['state_id'])
+a['state_id'] = pd.Categorical(a['state_id'])
 states = pd.get_dummies(a['state_id'])
 pd.DataFrame(test1).transpose().melt(id_vars=['item_id','store_id'])
 
@@ -113,4 +113,5 @@ d.iloc[:, 0].shift() # get the value from previous row
 a.groupby('cat_id').sum().transpose().corr() # pearson corr of 3 categories
 scipy.stats.stats.spearmanr(a.groupby('cat_id').sum().transpose()) # rank correlation
 scipy.stats.stats.pearsonr(a.groupby('cat_id').sum().to_numpy()[0], a.groupby('cat_id').sum().to_numpy()[1]) # pearson correlation between two arrays
-#output
+#output test to a csv file
+test.to_csv(filepath +'test.csv', index=False)
