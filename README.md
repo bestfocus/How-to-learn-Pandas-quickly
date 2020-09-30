@@ -13,7 +13,11 @@ When you just start to get familiar with Pandas, it might be more effective if y
 # Pandas Features:
 Pandas is derived from the term: panel data. Pandas is built on the package numpy and allows fast calculations for matrix-like data.
 
-The structure of the contents here allows you to systematically understand the various key operations of Pandas that include: select, change, add, delete, merge, aggregate. Make sure you know how to do each of them. If you are familiar with SQL, the operations are similar.
+The structure of the contents here allows you to systematically understand the various key operations of Pandas that include: select, change, add, delete, merge, aggregate. Make sure you know how to do each of them. 
+If you are familiar with SQL (Structured Query Language), the operations are similar: 
+ - data definition (create, alter, drop)
+ - data manipulate (insert, update, delete)  
+ - data query (select)
 
  
 # Reference:
