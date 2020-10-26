@@ -59,6 +59,9 @@ test1 = c.copy()
 test1.columns = b.columns[:len(test1.columns)]
 test.rename(columns={'F2':'test2'}, inplace=True)
 
+# change dtype
+c['weekday'] = c['weekday'].astype(float)
+
 # select top 10 smallest
 dailymean = a[6:].mean()
 c[c['d'].isin(dailymean.sort_values()[:10].index)]
