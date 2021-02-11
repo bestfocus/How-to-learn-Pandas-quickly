@@ -24,10 +24,10 @@ onecoldf =  onecol.to_frame()
 # dataframe structure elements: 1. index for rows, 2. columns are just columns
 a.describe() #for numerical variables, shows quantiles
 a.head() # show top 10 rows of the data
-c.columns
-c.index
-c.dtypes
-c.values
+c.columns # the type of c.columns is pandas.core.indexes.numeric.Int64Index 
+c.index   # the type of c.index   is pandas.core.indexes.range.RangeIndex
+c.dtypes  # the type of c.dtypes  is pandas.core.series.Series
+c.values  # the type of c.values  is numpy.ndarray
 
 # the index is a special feature of pandas
 test = a.copy() # make a copy of a, such that when you change test, a won't be changed
