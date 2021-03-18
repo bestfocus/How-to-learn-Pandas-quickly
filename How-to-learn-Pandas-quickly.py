@@ -107,7 +107,7 @@ pd.pivot_table(c[['weekday','event_name_1']], index=['event_name_1'], columns=['
 
 # one hot transformation
 a['state_id'] = pd.Categorical(a['state_id'])
-states = pd.get_dummies(a['state_id'])
+states = pd.get_dummies(a['state_id']) # Use this to exclude "state_id_" in the new column names: states = pd.get_dummies(a['state_id'], prefix='',prefix_sep='')
 pd.DataFrame(test1).transpose().melt(id_vars=['item_id','store_id'])
 
 # calculations
