@@ -48,16 +48,22 @@ c.loc[~c.loc[:,'event_name_2'].isna(), ['event_name_1','event_name_2']] # select
 # add new columns
 test['type'] = test['id'].apply(lambda x: x[-10:])
 test[test['type'] == 'validation']
+# use insert to add a new column
+test.insert(column='other',value=1,loc=0) # insert column other at the beginning, all values for other are 1
+
 # use sort_values to order the data by a column name
 test = test.sort_values('id')
 #rearrange the order of the columns by using a list of selected column names in new order
 cols = test.columns.tolist()
 test = test[[cols[-1]] + cols[:-1]]
-
 # rename columns
 test1 = c.copy()
 test1.columns = b.columns[:len(test1.columns)]
 test.rename(columns={'F2':'test2'}, inplace=True)
+
+# add new rows
+res = pd.DataFrame({'first':[], 'last':[], 'ratio':[]})
+res = res.append({'first':10, 'last':100, 'ratio':10},ignore_index=True) # note: it needs to use res= to change res
 
 # change dtype
 c['weekday'] = c['weekday'].astype(float)
