@@ -117,7 +117,9 @@ states = pd.get_dummies(a['state_id']) # Use this to exclude "state_id_" in the 
 pd.DataFrame(test1).transpose().melt(id_vars=['item_id','store_id'])
 
 # calculations
-d.iloc[:, -1].diff() # diff from previous row
+d.iloc[:, -1].diff() # diff for the column from previous row
+d.iloc[:, -1].pct_change() # percent change for the column from previous row
+d.iloc[:, -1].cumprod() # cumprod for the column in all rows
 d.iloc[:, 0].shift() # get the value from previous row
 a.groupby('cat_id').sum().transpose().corr() # pearson corr of 3 categories
 scipy.stats.stats.spearmanr(a.groupby('cat_id').sum().transpose()) # rank correlation
