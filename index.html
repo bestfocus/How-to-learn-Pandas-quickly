@@ -2,9 +2,95 @@
 <html>
 <head>
   <title>Home</title>
+  <style>
+    :root { --maxw: 800px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      color: #111;
+      background: #fafafa;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    h1 { margin: 0 0 0.25rem; font-size: clamp(1.5rem, 2.5vw, 2rem); }
+    p.lead { margin-top: 0.25rem; color: #444; }
+    ol { padding-left: 1.25rem; }
+    li + li { margin-top: 0.75rem; }
+    li h2 {
+      font-size: 1rem;
+      margin: 0 0 0.25rem;
+    }
+    li p { margin: 0; color: #222; }
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    footer {
+      margin-top: 2rem;
+      color: #555;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to My Site</h1>
+  <h1>Welcome to Using Focus</h1>
+    <header>
+    <div class="container">
+      <h1>Staying Focused</h1>
+      <p class="lead">Staying focused is key to improving work efficiency and learning outcomes. Here are some strategies to help maintain focus:</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <ol>
+        <li>
+          <h2>Pomodoro Technique</h2>
+          <p>Break your time into 25-minute work sessions, fully dedicated to one task, followed by a 5-minute break. This helps boost concentration and efficiency.</p>
+        </li>
+        <li>
+          <h2>Create a To-Do List</h2>
+          <p>List the tasks you need to complete each day, then spend a few minutes prioritizing them. Focus on one task at a time to avoid distractions.</p>
+        </li>
+        <li>
+          <h2>Build a Focus-Friendly Environment</h2>
+          <p>Choose a quiet, tidy, and distraction-free workspace. Turn off phone notifications and reduce background noise.</p>
+        </li>
+        <li>
+          <h2>Self-Awareness</h2>
+          <p>Stay aware of your emotions and attention. If you notice yourself getting distracted, bring your focus back immediately.</p>
+        </li>
+        <li>
+          <h2>Set Goals</h2>
+          <p>Be clear about your objectives and understand why you’re doing each task. Keep your attention on achieving these goals.</p>
+        </li>
+        <li>
+          <h2>Exercise and Rest</h2>
+          <p>Moderate exercise and sufficient rest help improve focus. Maintain good physical health.</p>
+        </li>
+        <li>
+          <h2>Optimal State</h2>
+          <p>Aim to immerse yourself in your work or study. Entering an optimal state (<em>in the zone</em>) enhances both efficiency and satisfaction.</p>
+        </li>
+      </ol>
+    </div>
+
+    <footer>
+      <p><strong>Remember:</strong> Focus is a skill you can train. With consistent practice, you can strengthen your ability to stay focused.</p>
+    </footer>
+  </main>
   <a href="about.html">About Page</a>
 </body>
 </html>
